@@ -4,6 +4,7 @@ import com.dblab.webservice.config.auth.dto.SessionUser;
 import com.dblab.webservice.service.PostsService;
 import com.dblab.webservice.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,8 +39,8 @@ public class IndexController {
         return "members";}
 
     @GetMapping("/project")
-    public String project(Model model){
-        model.addAttribute("posts", postsService.findAllDesc());
+    public String project(Model model, Pageable pageable){
+        model.addAttribute("posts", postsService.findAllDesc(pageable));
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) {
             model.addAttribute("userName", user.getName());
