@@ -1,4 +1,4 @@
-package com.dblab.webservice.domain.user;
+package com.dblab.webservice.model.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.dblab.webservice.web.dto;
+package com.dblab.webservice.repository.dto;
 
 import lombok.Builder;
 import lombok.Getter;

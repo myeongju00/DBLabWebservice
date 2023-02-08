@@ -1,8 +1,8 @@
 package com.dblab.webservice.config.auth.dto;
 
 
-import com.dblab.webservice.domain.user.Role;
-import com.dblab.webservice.domain.user.User;
+import com.dblab.webservice.model.user.Role;
+import com.dblab.webservice.model.user.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -44,8 +44,8 @@ public class OAuthAttributes {
                 .build();
     }
 
-    public User toEntity(){
-        return User.builder()
+    public UserEntity toEntity(){
+        return UserEntity.builder()
                 .name(name)
                 .email(email)
                 .picture(picture)

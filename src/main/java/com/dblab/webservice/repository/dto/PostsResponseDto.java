@@ -1,7 +1,7 @@
-package com.dblab.webservice.web.dto;
+package com.dblab.webservice.repository.dto;
 
 
-import com.dblab.webservice.domain.posts.Posts;
+import com.dblab.webservice.model.posts.Posts;
 import lombok.Getter;
 
 @Getter
@@ -14,7 +14,7 @@ public class PostsResponseDto {
     private String author;
 
     public PostsResponseDto (Posts entity) {
-        this.id = entity.getId();
+        this.id = entity.getPostId();
         this.category = entity.getCategory();
         this.title = entity.getTitle();
         this.content = entity.getContent();

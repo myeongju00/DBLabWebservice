@@ -3,8 +3,8 @@ package com.dblab.webservice.config.auth;
 
 import com.dblab.webservice.config.auth.dto.OAuthAttributes;
 import com.dblab.webservice.config.auth.dto.SessionUser;
-import com.dblab.webservice.domain.user.User;
-import com.dblab.webservice.domain.user.UserRepository;
+import com.dblab.webservice.model.user.UserEntity;
+import com.dblab.webservice.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,7 +41,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,
                 oAuth2User.getAttributes());
 
-        User user = saveOrUpdate(attributes);
+        UserEntity user = saveOrUpdate(attributes);
 
         httpSession.setAttribute("user", new SessionUser(user));
 
@@ -53,8 +53,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         );
     }
 
-    private User saveOrUpdate (OAuthAttributes attributes) {
-        User user = userRepository.findByEmail(attributes.getEmail())
+    private UserEntity saveOrUpdate (OAuthAttributes attributes) {
+        UserEntity user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
         return userRepository.save(user);

@@ -1,6 +1,6 @@
 package com.dblab.webservice.config.auth.dto;
 
-import com.dblab.webservice.domain.user.User;
+import com.dblab.webservice.model.user.UserEntity;
 import lombok.Getter;
 
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class SessionUser implements Serializable {
     private String email;
     private String picture;
 
-    public SessionUser(User user) {
+    public SessionUser(UserEntity user) {
         this.name = user.getName();
         this.email = user.getEmail();
         this.picture = user.getPicture();

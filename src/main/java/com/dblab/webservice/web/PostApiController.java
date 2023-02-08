@@ -1,9 +1,9 @@
 package com.dblab.webservice.web;
 
 import com.dblab.webservice.service.PostsService;
-import com.dblab.webservice.web.dto.PostsResponseDto;
-import com.dblab.webservice.web.dto.PostsSaveRequestDto;
-import com.dblab.webservice.web.dto.PostsUpdateRequestDto;
+import com.dblab.webservice.repository.dto.PostsResponseDto;
+import com.dblab.webservice.repository.dto.PostsSaveRequestDto;
+import com.dblab.webservice.repository.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

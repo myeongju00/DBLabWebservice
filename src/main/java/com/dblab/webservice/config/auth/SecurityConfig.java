@@ -1,6 +1,6 @@
 package com.dblab.webservice.config.auth;
 
-import com.dblab.webservice.domain.user.Role;
+import com.dblab.webservice.model.user.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

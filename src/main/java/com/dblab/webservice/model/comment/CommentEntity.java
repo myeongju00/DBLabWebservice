@@ -1,7 +1,9 @@
-package com.dblab.webservice.domain.comment;
+package com.dblab.webservice.model.comment;
 
-import com.dblab.webservice.domain.posts.Posts;
-import com.dblab.webservice.domain.user.User;
+import com.dblab.webservice.model.BaseTimeEntity;
+import com.dblab.webservice.model.posts.Posts;
+import com.dblab.webservice.model.user.UserEntity;
+import com.dblab.webservice.repository.dto.CommentDto;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -21,7 +24,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Comment {
+public class CommentEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
@@ -34,12 +37,29 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name="user_id", nullable = false)
-    private User user;
+    private UserEntity user;
 
     private String commentText;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+    private CommentEntity parent;
+
+    @ColumnDefault("0")
+    private int depth;
+
     private Long commentLikeCount;
 
-    private boolean isLiked;
-    
+    public CommentDto toDto() {
+        return CommentDto.builder()
+                .commentId(commentId)
+                .posts(posts)
+                .user(user)
+                .commentText(commentText)
+                .parent(parent.toDto())
+                .commentLikeCount(commentLikeCount)
+                .depth(depth)
+                .build();
+    }
+
 }

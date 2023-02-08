@@ -1,4 +1,4 @@
-package com.dblab.webservice.domain;
+package com.dblab.webservice.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

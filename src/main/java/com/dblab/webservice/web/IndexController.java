@@ -2,7 +2,7 @@ package com.dblab.webservice.web;
 
 import com.dblab.webservice.config.auth.dto.SessionUser;
 import com.dblab.webservice.service.PostsService;
-import com.dblab.webservice.web.dto.PostsResponseDto;
+import com.dblab.webservice.repository.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;

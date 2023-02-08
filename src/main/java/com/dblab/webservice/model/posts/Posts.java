@@ -1,6 +1,6 @@
-package com.dblab.webservice.domain.posts;
+package com.dblab.webservice.model.posts;
 
-import com.dblab.webservice.domain.BaseTimeEntity;
+import com.dblab.webservice.model.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,11 +1,11 @@
 package com.dblab.webservice.service;
 
-import com.dblab.webservice.domain.posts.Posts;
-import com.dblab.webservice.domain.posts.PostsRepository;
-import com.dblab.webservice.web.dto.PostsListResponseDto;
-import com.dblab.webservice.web.dto.PostsResponseDto;
-import com.dblab.webservice.web.dto.PostsSaveRequestDto;
-import com.dblab.webservice.web.dto.PostsUpdateRequestDto;
+import com.dblab.webservice.model.posts.Posts;
+import com.dblab.webservice.model.posts.PostsRepository;
+import com.dblab.webservice.repository.dto.PostsListResponseDto;
+import com.dblab.webservice.repository.dto.PostsResponseDto;
+import com.dblab.webservice.repository.dto.PostsSaveRequestDto;
+import com.dblab.webservice.repository.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
-package com.dblab.webservice.web.dto;
+package com.dblab.webservice.repository.dto;
 
-import com.dblab.webservice.domain.posts.Posts;
+import com.dblab.webservice.model.posts.Posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

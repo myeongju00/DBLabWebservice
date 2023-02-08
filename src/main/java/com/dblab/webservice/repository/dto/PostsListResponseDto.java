@@ -1,10 +1,8 @@
-package com.dblab.webservice.web.dto;
+package com.dblab.webservice.repository.dto;
 
 
-import com.dblab.webservice.domain.posts.Posts;
+import com.dblab.webservice.model.posts.Posts;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 @Getter
 public class PostsListResponseDto {
@@ -15,7 +13,7 @@ public class PostsListResponseDto {
     private String modifiedDate;
 
     public PostsListResponseDto(Posts entity) {
-        this.id = entity.getId();
+        this.id = entity.getPostId();
         this.category = entity.getCategory();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();

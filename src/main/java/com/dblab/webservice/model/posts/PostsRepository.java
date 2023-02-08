@@ -1,4 +1,4 @@
-package com.dblab.webservice.domain.posts;
+package com.dblab.webservice.model.posts;
 
 
 import org.springframework.data.domain.Page;
