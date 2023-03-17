@@ -1,8 +1,7 @@
 package com.dblab.webservice.repository.dto;
 
-import com.dblab.webservice.model.comment.CommentEntity;
 import com.dblab.webservice.model.posts.Posts;
-import com.dblab.webservice.model.user.UserEntity;
+import com.dblab.webservice.domain.user.model.entity.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -23,23 +22,23 @@ public class CommentDto {
 
     private int depth;
 
-    public CommentDto SaveRequestCommentDto(Posts posts, UserEntity user, String commentText, CommentDto parent) {
-        this.posts = posts;
-        this.user = user;
-        this.commentText = commentText;
-        this.parent = parent;
-        return new CommentDto();
-    }
-
-    public CommentEntity toEntity() {
-        return CommentEntity.builder()
-                .commentId(commentId)
-                .posts(posts)
-                .user(user)
-                .commentText(commentText)
-                .commentLikeCount(commentLikeCount)
-                .parent(parent.toEntity())
-                .depth(depth)
-                .build();
-    }
+//    public CommentDto SaveRequestCommentDto(Posts posts, UserEntity user, String commentText, CommentDto parent) {
+//        this.posts = posts;
+//        this.user = user;
+//        this.commentText = commentText;
+//        this.parent = parent;
+//        return new CommentDto();
+//    }
+//
+//    public CommentEntity toEntity() {
+//        return CommentEntity.builder()
+//                .commentId(commentId)
+//                .posts(posts)
+//                .user(user)
+//                .commentText(commentText)
+//                .commentLikeCount(commentLikeCount)
+//                .parent(parent.toEntity())
+//                .depth(depth)
+//                .build();
+//    }
 }
