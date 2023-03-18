@@ -1,16 +1,18 @@
 package com.dblab.webservice.service;
 
-import com.dblab.webservice.domain.posts.Posts;
-import com.dblab.webservice.domain.posts.PostsRepository;
-import com.dblab.webservice.web.dto.PostsListResponseDto;
-import com.dblab.webservice.web.dto.PostsResponseDto;
-import com.dblab.webservice.web.dto.PostsSaveRequestDto;
-import com.dblab.webservice.web.dto.PostsUpdateRequestDto;
+import com.dblab.webservice.model.posts.Posts;
+import com.dblab.webservice.model.posts.PostsRepository;
+import com.dblab.webservice.repository.dto.PostsListResponseDto;
+import com.dblab.webservice.repository.dto.PostsResponseDto;
+import com.dblab.webservice.repository.dto.PostsSaveRequestDto;
+import com.dblab.webservice.repository.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -20,7 +22,7 @@ public class PostsService {
 
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
-        return postsRepository.save(requestDto.toEntity()).getId();
+        return postsRepository.save(requestDto.toEntity()).getPostId();
     }
 
     @Transactional
@@ -39,10 +41,10 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
+    public Page<PostsListResponseDto> findAllDesc(Pageable pageable) {
+        return new PageImpl<> (postsRepository.findAllDesc(pageable).stream()
                 .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     @Transactional

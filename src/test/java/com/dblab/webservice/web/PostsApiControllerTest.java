@@ -1,10 +1,9 @@
 package com.dblab.webservice.web;
 
-import com.dblab.webservice.domain.posts.Posts;
-import com.dblab.webservice.domain.posts.PostsRepository;
-import com.dblab.webservice.web.dto.PostsSaveRequestDto;
-import com.dblab.webservice.web.dto.PostsUpdateRequestDto;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.dblab.webservice.model.posts.Posts;
+import com.dblab.webservice.model.posts.PostsRepository;
+import com.dblab.webservice.repository.dto.PostsSaveRequestDto;
+import com.dblab.webservice.repository.dto.PostsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,10 +13,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
@@ -25,7 +22,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -108,7 +104,7 @@ public class PostsApiControllerTest {
                 .content("content")
                 .author("author")
                 .build());
-        Long updateId = savedPosts.getId();
+        Long updateId = savedPosts.getPostId();
         String expectedTitle = "title2";
         String expectedContent ="content2";
 
