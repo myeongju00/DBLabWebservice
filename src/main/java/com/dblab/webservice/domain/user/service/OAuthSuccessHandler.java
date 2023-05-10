@@ -88,7 +88,7 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         UserEntity user = userRepository.findBySocialId(socialId)
                 .orElseThrow(() -> new ApiException(UserMessage.USER_NOT_FOUND));
 
-        TokenResponse jwtTokenResponse = tokenProvider.generateJwtToken(Long.toString(user.getUserId()), Role.MEMBER);
+        TokenResponse jwtTokenResponse = tokenProvider.generateJwtToken(Long.toString(user.getUserId()), user.getEmail(), Role.MEMBER);
         // DB 저장
         RefreshTokenEntity refreshToken = RefreshTokenEntity.builder()
                 .user(user)

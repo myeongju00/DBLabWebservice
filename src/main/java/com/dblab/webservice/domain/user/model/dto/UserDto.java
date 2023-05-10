@@ -20,7 +20,6 @@ public class UserDto {
     private Role role;
     private ProviderType providerType;
 
-
     public UserDto(UserEntity entity) {
         this.userId = entity.getUserId();
         this.socialId = entity.getSocialId();
