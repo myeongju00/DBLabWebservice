@@ -44,17 +44,18 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenResponse generateJwtToken(String email, Role role) {
+    public TokenResponse generateJwtToken(String name, String email, Role role) {
         long now = (new Date()).getTime();
 
         Map<String, Object> payloads = Map.of(
+                "name", name,
                 "email", email,
                 AUTHORITIES_KEY, role);
 
 
         Date accessTokenExpiresIn = new Date(now + ACCESS_TOKEN_EXPIRE_TIME);
         String accessToken = Jwts.builder() // payload "email": "email"
-                .setClaims(payloads)           // payload "aggregatedId : "userAggregateId" , "auth": "ROLE_USER"
+                .setClaims(payloads)           // payload "name : "name" , "auth": "ROLE_USER"
                 .setExpiration(accessTokenExpiresIn)        // payload "exp": 1516239022 (예시)
                 .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"
                 .compact();
@@ -82,7 +83,7 @@ public class TokenProvider {
                         .collect(Collectors.toList());
 
         // UserDetails 객체를 만들어서 Authentication 리턴
-        UserDetails principal = new UserInfo(claims.get("email").toString(), "", authorities);
+        UserDetails principal = new UserInfo(claims.get("name").toString(), claims.get("email").toString(), authorities);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 

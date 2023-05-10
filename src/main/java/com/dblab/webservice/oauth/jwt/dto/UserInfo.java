@@ -21,8 +21,8 @@ public class UserInfo implements UserDetails, CredentialsContainer {
     @Serial
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
     private static final Log logger = LogFactory.getLog(User.class);
+    private final String name;
     private final String email;
-    private final String aggreagatedId;
     private final Set<GrantedAuthority> authorities;
     private final boolean accountNonExpired;
 
@@ -32,30 +32,29 @@ public class UserInfo implements UserDetails, CredentialsContainer {
 
     private final boolean enabled;
 
-    public UserInfo(String email, String aggreagatedId, Collection<? extends GrantedAuthority> authorities) {
-        this(email, aggreagatedId, true, true, true, true, authorities);
+    public UserInfo(String name, String email, Collection<? extends GrantedAuthority> authorities) {
+        this(name, email, true, true, true, true, authorities);
     }
 
-    public UserInfo(String email, String aggreagatedId, boolean enabled, boolean accountNonExpired,
-                boolean credentialsNonExpired, boolean accountNonLocked,
-                Collection<? extends GrantedAuthority> authorities) {
-        Assert.isTrue(email != null && !"".equals(email) && aggreagatedId != null,
+    public UserInfo(String email, String name, boolean enabled, boolean accountNonExpired,
+                    boolean credentialsNonExpired, boolean accountNonLocked,
+                    Collection<? extends GrantedAuthority> authorities) {
+        Assert.isTrue(email != null && !"".equals(email) && name != null,
                 "Cannot pass null or empty values to constructor");
+        this.name = name;
         this.email = email;
-        this.aggreagatedId = aggreagatedId;
         this.enabled = enabled;
         this.accountNonExpired = accountNonExpired;
         this.credentialsNonExpired = credentialsNonExpired;
         this.accountNonLocked = accountNonLocked;
         this.authorities = Collections.unmodifiableSet(sortAuthorities(authorities));
     }
+    public String getName() {
+        return this.name;
+    }
 
     public String getEmail() {
         return this.email;
-    }
-
-    public String getAggreagatedId() {
-        return this.aggreagatedId;
     }
 
     @Override

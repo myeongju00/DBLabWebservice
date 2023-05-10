@@ -20,8 +20,8 @@ public class AuthController {
 
     @PostMapping(authUrl + "/reissue")
     public ApiResponse<TokenResponse> reissue(@RequestBody TokenReissueRequest tokenReissueRequest) {
-        TokenResponse jwtTokenResponse = authService.reissue(tokenReissueRequest);
-        return ApiResponse.createResponseWithMessage(jwtTokenResponse, UserMessage.USER_TOKEN_REISSUE);
+        TokenResponse tokenResponse = authService.reissue(tokenReissueRequest);
+        return ApiResponse.createResponseWithMessage(tokenResponse, UserMessage.USER_TOKEN_REISSUE);
     }
 
 //    @ApiOperation(value = "유저 로그아웃", notes = "Access Token, Refresh Token 제거 합니다 (클라이언트 측에서도 헤더를 제거해줘야 합니다.)")

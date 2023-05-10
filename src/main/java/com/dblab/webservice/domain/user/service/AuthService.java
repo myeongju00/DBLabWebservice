@@ -64,7 +64,7 @@ public class AuthService {
 
     @Transactional
     TokenResponse createToken(UserEntity user) {
-        TokenResponse jwtTokenResponse = tokenProvider.generateJwtToken(user.getUserId().toString(), Role.GUEST);
+        TokenResponse jwtTokenResponse = tokenProvider.generateJwtToken(user.getName(), user.getEmail(), Role.GUEST);
 
         RefreshTokenEntity refreshToken = RefreshTokenEntity.builder()
                 .user(user)
@@ -139,7 +139,7 @@ public class AuthService {
         }
 
         // 5. 새로운 토큰 생성
-        TokenResponse newRefreshToken = tokenProvider.generateJwtToken(id, Role.GUEST);
+        TokenResponse newRefreshToken = tokenProvider.generateJwtToken(id, userEntity.get().getEmail(), Role.GUEST);
 
         // 6. 저장소 정보 업데이트
         refreshToken.setRefreshToken(newRefreshToken.getRefreshToken());

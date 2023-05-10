@@ -87,7 +87,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         UserEntity user = userRepository.findBySocialId(socialId)
                 .orElseThrow(() -> new ApiException(UserMessage.USER_NOT_FOUND));
 
-        TokenResponse tokenResponse = tokenProvider.generateJwtToken(Long.toString(user.getUserId()), Role.GUEST);
+        TokenResponse tokenResponse = tokenProvider.generateJwtToken(Long.toString(user.getUserId()), user.getEmail(), Role.GUEST);
         // DB 저장
         RefreshTokenEntity refreshToken = RefreshTokenEntity.builder()
                 .user(user)
